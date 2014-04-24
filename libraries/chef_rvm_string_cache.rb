@@ -78,7 +78,7 @@ class Chef
 
         if result =~ /^-/ || result == nil   # if the result has a leading dash, value is bogus
           Chef::Log.warn("Could not determine canonical RVM string for: #{str} " +
-                         "(#{user || 'system'})")
+                         "(#{user || 'system'}) .... used cmd: #{cmd}")
           nil
 	else
           Chef::Log.debug("Canonical RVM string is: #{str} => #{result} " +
