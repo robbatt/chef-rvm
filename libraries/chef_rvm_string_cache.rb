@@ -74,7 +74,24 @@ class Chef
         stdin.puts(cmd)
         stdin.close
 
-        result = stdout.read.split('\n').first.chomp
+#        result = stdout.read.split('\n').first.chomp
+
+	output = stdout.read
+
+	Chef::Log.debug("Read from stdout #{output}")
+
+	outputArray = output.split('\n')
+
+	p outputArray
+
+	result = outputArray.first
+
+
+
+	if result != nil 
+	   result = result.chomp
+	end	
+
         if result =~ /^-/   # if the result has a leading dash, value is bogus
           Chef::Log.warn("Could not determine canonical RVM string for: #{str} " +
                          "(#{user || 'system'})")
